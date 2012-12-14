@@ -7,7 +7,7 @@ else
 	if (git branch -r --list origin/$BRANCH | wc -w | grep -q 1); then
 		git checkout --quiet master && git branch $BRANCH && git pull --quiet --ff-only origin $BRANCH;
 	else
-		if (! ghi list | grep -q '^\s*$1:'); then
+		if ! (ghi list | grep -q "^\s*$1:"); then
 			echo "There is no issue number $1." 1>&2
 			exit 1;
 		fi
