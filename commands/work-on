@@ -1,0 +1,6 @@
+#!/bin/bash
+branch=issue-$1
+if (git branch --list $branch | wc -w | grep -q 0); then
+	git branch-master $branch
+fi
+git checkout $branch

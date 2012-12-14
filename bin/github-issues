@@ -1,0 +1,3 @@
+#!/bin/bash
+commandsDir=$(dirname $0)/../
+$commandsDir"commands/"$@
