@@ -1,3 +1,13 @@
-#!/bin/bash
+#!/bin/bash -e
+if [ "" == "$1" ]; then
+	echo "No command provided. Possible commands:";
+	echo "  checkout <issue-number>";
+	echo "  details";
+	echo "  browse";
+	echo "  comment";
+	echo "  pull-request [<target>]";
+	exit
+fi
+
 commandsDir=$(dirname $0)/../
 $commandsDir"commands/"$@

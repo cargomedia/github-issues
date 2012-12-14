@@ -1,12 +1,4 @@
-#!/bin/sh
-BRANCH=$(git rev-parse --abbrev-ref HEAD);
-IFS='-' read -ra PARTS <<< "$BRANCH"
-if [ "${PARTS[0]}" != "issue" ]; then
-	echo "Current branch is not issue related";
-	exit 1
-fi
-ARGS=""
-if [ "$1" ]; then
-	ARGS="-m $1"
-fi
-ghi comment ${PARTS[1]} $ARGS
+#!/bin/bash -e
+
+ISSUE=$($(dirname $0)/_getIssue)
+ghi comment $ISSUE

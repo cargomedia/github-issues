@@ -1,12 +1,7 @@
-#!/bin/sh
-BRANCH=$(git rev-parse --abbrev-ref HEAD);
-IFS='-' read -ra PARTS <<< "$BRANCH"
-if [ "${PARTS[0]}" != "issue" ]; then
-	echo "Current branch is not issue related";
-	exit 1
-fi
-ISSUE=${PARTS[1]}
-BASE=cargomedia:master
+#!/bin/bash -e
+
+ISSUE=$($(dirname $0)/_getIssue)
+BASE=$(git remote -v| grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
 if [ "$1" ]; then
 	BASE=$1
 fi
