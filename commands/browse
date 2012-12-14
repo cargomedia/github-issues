@@ -1,0 +1,8 @@
+#!/bin/sh
+BRANCH=$(git rev-parse --abbrev-ref HEAD);
+IFS='-' read -ra PARTS <<< "$BRANCH"
+if [ "${PARTS[0]}" != "issue" ]; then
+	echo "Current branch is not issue related";
+	exit 1
+fi
+ghi show ${PARTS[1]} --web
