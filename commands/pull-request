@@ -1,0 +1,13 @@
+#!/bin/sh
+BRANCH=$(git rev-parse --abbrev-ref HEAD);
+IFS='-' read -ra PARTS <<< "$BRANCH"
+if [ "${PARTS[0]}" != "issue" ]; then
+	echo "Current branch is not issue related";
+	exit 1
+fi
+ISSUE=${PARTS[1]}
+BASE=cargomedia:master
+if [ "$1" ]; then
+	BASE=$1
+fi
+hub pull-request -i $ISSUE -b $BASE
