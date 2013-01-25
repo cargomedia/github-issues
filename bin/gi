@@ -1,0 +1,18 @@
+#!/bin/bash -e
+if [ "" == "$1" ]; then
+	echo "No command provided. Possible commands:";
+	echo "  checkout <issue-number>";
+	echo "  details";
+	echo "  browse";
+	echo "  comment";
+	echo "  pull-request [<target>]";
+	exit
+fi
+
+if [ `uname` == 'Darwin' ]; then
+	script=$(greadlink -f "$0")
+else
+	script=$(readlink -f "$0")
+fi
+commandsDir=$(dirname $script)/../
+$commandsDir"commands/"$@

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+ISSUE=$($(dirname $0)/_getIssue)
+ghi show $ISSUE

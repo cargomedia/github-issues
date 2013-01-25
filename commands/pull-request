@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+ISSUE=$($(dirname $0)/_getIssue)
+BASE=$(git remote -v| grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
+if [ "$1" ]; then
+	BASE=$1
+fi
+hub pull-request -i $ISSUE -b $BASE
