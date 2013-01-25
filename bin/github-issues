@@ -9,5 +9,10 @@ if [ "" == "$1" ]; then
 	exit
 fi
 
-commandsDir=$(dirname $0)/../
+if [ `uname` == 'Darwin' ]; then
+	script=$(greadlink -f "$0")
+else
+	script=$(readlink -f "$0")
+fi
+commandsDir=$(dirname $script)/../
 $commandsDir"commands/"$@
