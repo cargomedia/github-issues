@@ -1,4 +1,8 @@
 #!/bin/bash -e
 
 ISSUE=$($(dirname $0)/_getIssue)
-ghi comment $ISSUE
+if [ "" == "$1" ]; then
+	ghi comment $ISSUE
+else
+	ghi comment $ISSUE -m "$@"
+fi
