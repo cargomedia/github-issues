@@ -1,11 +1,15 @@
 #!/bin/bash -e
 if [ "" == "$1" ]; then
-	echo "No command provided. Possible commands:";
-	echo "  checkout <issue-number>";
-	echo "  details";
-	echo "  browse";
-	echo "  comment";
-	echo "  pull-request [<target>]";
+	echo "usage: gi <command>";
+	echo;
+	echo "Commands:";
+	echo "  open                      Open a new issue"
+	echo "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
+	echo "  details                   Show current branch-issue's details";
+	echo "  browse                    Open current branch-issue in web browser";
+	echo "  comment                   Add comment to current branch-issue";
+	echo "  push                      Push current branch-issue to origin";
+	echo "  pull-request [<target>]   Create a pull-request with the current branch-issue";
 	exit
 fi
 
