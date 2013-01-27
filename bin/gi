@@ -3,8 +3,19 @@
 echoerr() {
 	echo "$@" 1>&2;
 }
+COMMAND=$1
+if [ `uname` == 'Darwin' ]; then
+	script=$(greadlink -f "$0")
+else
+	script=$(readlink -f "$0")
+fi
+DIR_ROOT=$(dirname $script)/../
+if ! (test -e $DIR_ROOT"commands/"$COMMAND); then
+	echoerr "Invalid command '$COMMAND'.";
+	COMMAND="";
+fi
 
-if [ "" == "$1" ]; then
+if [ "" == "$COMMAND" ]; then
 	echoerr "usage: gi <command>";
 	echoerr;
 	echoerr "Commands:";
@@ -23,11 +34,4 @@ if ! (git remote | grep -q '^upstream$'); then
 	echoerr "  use (git remote add upstream <url>)";
 	exit 1;
 fi
-
-if [ `uname` == 'Darwin' ]; then
-	script=$(greadlink -f "$0")
-else
-	script=$(readlink -f "$0")
-fi
-commandsDir=$(dirname $script)/../
-$commandsDir"commands/"$@
+$DIR_ROOT"commands/"$@
