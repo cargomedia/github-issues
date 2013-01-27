@@ -1,21 +1,26 @@
 #!/bin/bash -e
+
+echoerr() {
+	echo "$@" 1>&2;
+}
+
 if [ "" == "$1" ]; then
-	echo "usage: gi <command>";
-	echo;
-	echo "Commands:";
-	echo "  open                      Open a new issue"
-	echo "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
-	echo "  details                   Show current branch-issue's details";
-	echo "  browse                    Open current branch-issue in web browser";
-	echo "  comment                   Add comment to current branch-issue";
-	echo "  push                      Push current branch-issue to origin";
-	echo "  pull-request [<target>]   Create a pull-request with the current branch-issue";
+	echoerr "usage: gi <command>";
+	echoerr;
+	echoerr "Commands:";
+	echoerr "  open                      Open a new issue"
+	echoerr "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
+	echoerr "  details                   Show current branch-issue's details";
+	echoerr "  browse                    Open current branch-issue in web browser";
+	echoerr "  comment                   Add comment to current branch-issue";
+	echoerr "  push                      Push current branch-issue to origin";
+	echoerr "  pull-request [<target>]   Create a pull-request with the current branch-issue";
 	exit 1;
 fi
 
 if ! (git remote | grep -q '^upstream$'); then
-	echo "No upstream remote configured. Please add it using git:";
-	echo "  use (git remote add upstream <url>)";
+	echoerr "No upstream remote configured. Please add it using git:";
+	echoerr "  use (git remote add upstream <url>)";
 	exit 1;
 fi
 
