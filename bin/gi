@@ -10,7 +10,13 @@ if [ "" == "$1" ]; then
 	echo "  comment                   Add comment to current branch-issue";
 	echo "  push                      Push current branch-issue to origin";
 	echo "  pull-request [<target>]   Create a pull-request with the current branch-issue";
-	exit
+	exit 1;
+fi
+
+if ! (git remote | grep -q '^upstream$'); then
+	echo "No upstream remote configured. Please add it using git:";
+	echo "  use (git remote add upstream <url>)";
+	exit 1;
 fi
 
 if [ `uname` == 'Darwin' ]; then
