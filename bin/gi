@@ -8,11 +8,11 @@ if [ "" == "$1" ]; then
 	echoerr "usage: gi <command>";
 	echoerr;
 	echoerr "Commands:";
-	echoerr "  open                      Open a new issue"
+	echoerr "  open [<message>]          Open a new issue"
 	echoerr "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
 	echoerr "  details                   Show current branch-issue's details";
 	echoerr "  browse                    Open current branch-issue in web browser";
-	echoerr "  comment                   Add comment to current branch-issue";
+	echoerr "  comment [<message>]       Add comment to current branch-issue";
 	echoerr "  push                      Push current branch-issue to origin";
 	echoerr "  pull-request [<target>]   Create a pull-request with the current branch-issue";
 	exit 1;
