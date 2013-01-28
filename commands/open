@@ -7,10 +7,14 @@ MESSAGE="
 #
 #   http://github.github.com/github-flavored-markdown";
 
-MESSAGE=$(echo "$MESSAGE" | vipe | grep -v '^#');
-if [ "" == "$MESSAGE" ]; then
-	echo "No message provided" 1>&2
-	exit 1
+if [ "" == "$1" ]; then
+	MESSAGE=$(echo "$MESSAGE" | vipe | grep -v '^#');
+	if [ "" == "$MESSAGE" ]; then
+		echo "No message provided" 1>&2
+		exit 1
+	fi
+else
+	MESSAGE="$@"
 fi
 ISSUE=$(ghi open -m "$MESSAGE" 2>&1 | head -n 1 | perl -pe 's/#([0-9]+):.*/$1/')
 echo "Created issue $ISSUE"
