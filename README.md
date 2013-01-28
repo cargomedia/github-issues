@@ -24,14 +24,14 @@ Dependencies:
 ```
 usage: gi <command>
 
- Commands:
-   open                      Open a new issue
-   checkout <issue-number>   Check out branch for specified issue, create it if needed
-   details                   Show current branch-issue's details
-   browse                    Open current branch-issue in web browser
-   comment                   Add comment to current branch-issue
-   push                      Push current branch-issue to origin
-   pull-request [<target>]   Create a pull-request with the current branch-issue
+Commands:
+  open [<message>]          Open a new issue
+  checkout <issue-number>   Check out branch for specified issue, create it if needed
+  details                   Show current branch-issue's details
+  browse                    Open current branch-issue in web browser
+  comment [<message>]       Add comment to current branch-issue
+  push                      Push current branch-issue to origin
+  pull-request [<target>]   Create a pull-request with the current branch-issue
 ```
 
 
