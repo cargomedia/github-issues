@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 BRANCH=issue-$1
-if (git branch --list $BRANCH | wc -w | grep -q 1); then
+if (git branch --list $BRANCH | wc -l | grep -q 1); then
 	git checkout $BRANCH
 else
 	if (git branch -r --list origin/$BRANCH | wc -w | grep -q 1); then
