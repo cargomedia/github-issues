@@ -20,6 +20,11 @@ fi
 if [[ "$MESSAGE" =~ ^[0-9]+$ ]]; then
 	MESSAGE=$MESSAGE" "
 fi
-ISSUE=$(ghi open -m "$MESSAGE" 2>&1 | head -n 1 | perl -pe 's/#([0-9]+):.*/$1/')
+OUTPUT=$(ghi open -m "$MESSAGE" 2>&1 || echo '');
+ISSUE=$(echo "$OUTPUT" | head -n 1 | perl -pe 's/#([0-9]+):.*/$1/')
+if ! [[ "$ISSUE" =~ ^[0-9]+$ ]]; then
+	echo "$OUTPUT" 1>&2
+	exit 1
+fi
 echo "Created issue $ISSUE"
 $(dirname $0)/checkout $ISSUE
