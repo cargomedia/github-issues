@@ -3,10 +3,11 @@
 ISSUE=$($(dirname $0)/_getIssue)
 BASE=$1
 if ! [ "$1" ]; then
-	BASE=$(git remote -v | grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
-	if [[ "$BASE" =~ \(push\):master$ ]]; then
+	BASE=$(git remote -v | grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#');
+	if [[ "$BASE" =~ \(push\)$]]; then
 		echo "Could not extract pull-request BASE from remotes/upstream" 1>&2
 		exit 1
 	fi
+	BASE="$BASE:master"
 fi
 hub pull-request -i $ISSUE -b $BASE
