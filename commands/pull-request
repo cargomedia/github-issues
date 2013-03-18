@@ -5,7 +5,7 @@ BASE=$1
 if ! [ "$1" ]; then
 	BASE=$(git remote -v | grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
 	if [[ "$BASE" =~ \(push\):master$ ]]; then
-		echo 'Could not extract pull-request BASE from remotes/upstream'
+		echo "Could not extract pull-request BASE from remotes/upstream" 1>&2
 		exit 1
 	fi
 fi
