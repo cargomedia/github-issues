@@ -16,6 +16,7 @@ if [ "" == "$1" ]; then
 else
 	MESSAGE="$@"
 fi
+# Workaround for https://github.com/stephencelis/ghi/issues/81
 if [[ "$MESSAGE" =~ ^[0-9]+$ ]]; then
 	MESSAGE=$MESSAGE" "
 fi
