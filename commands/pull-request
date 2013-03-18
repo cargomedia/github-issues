@@ -1,8 +1,12 @@
 #!/bin/bash -e
 
 ISSUE=$($(dirname $0)/_getIssue)
-BASE=$(git remote -v| grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
-if [ "$1" ]; then
-	BASE=$1
+BASE=$1
+if ! [ "$1" ]; then
+	BASE=$(git remote -v | grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#'):master;
+	if [[ "$BASE" =~ \(push\):master$ ]]; then
+		echo 'Could not extract pull-request BASE from remotes/upstream'
+		exit 1
+	fi
 fi
 hub pull-request -i $ISSUE -b $BASE
