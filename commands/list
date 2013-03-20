@@ -1,7 +1,11 @@
 #!/bin/bash -e
 
-if [ "$1" == "my" ]; then
-	ghi list --mine
+if [ "$1" ]; then
+	USERNAME=$1
+	if [ "$USERNAME" == "me" ]; then
+		USERNAME="$(git config --get github.user)"
+	fi
+	ghi list --assignee $USERNAME
 else
 	ghi list
 fi
