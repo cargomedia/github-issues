@@ -29,6 +29,7 @@ if [ "" == "$COMMAND" ]; then
 	exit 1;
 fi
 
+$(git remote > /dev/null)
 if ! (git remote | grep -q '^upstream$'); then
 	echoerr "No upstream remote configured. Please add it using git:";
 	echoerr "  use (git remote add upstream <url>)";
