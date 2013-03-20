@@ -25,6 +25,7 @@ Dependencies:
 usage: gi <command>
 
 Commands:
+  list [my]                 Lists repo's issues
   open [<message>]          Open a new issue
   checkout <issue-number>   Check out branch for specified issue, create it if needed
   details                   Show current branch-issue's details
