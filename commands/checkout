@@ -7,7 +7,7 @@ else
 	if (git branch -r --list origin/$BRANCH | wc -l | grep -q 1); then
 		git checkout -b $BRANCH origin/$BRANCH
 	else
-		if ! (ghi list | grep -q "^\s*$1:"); then
+		if ! (ghi list | grep -q "^\s*$1[: ]"); then
 			echo "There is no issue number $1." 1>&2
 			exit 1;
 		fi
