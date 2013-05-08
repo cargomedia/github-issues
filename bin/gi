@@ -19,6 +19,7 @@ if [ "" == "$COMMAND" ]; then
 	echoerr "usage: gi <command>";
 	echoerr;
 	echoerr "Commands:";
+	echoerr "  list [<username>|me]      Lists repo's issues (assigned to user if provided)";
 	echoerr "  open [<message>]          Open a new issue"
 	echoerr "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
 	echoerr "  details                   Show current branch-issue's details";
@@ -29,6 +30,10 @@ if [ "" == "$COMMAND" ]; then
 	exit 1;
 fi
 
+if ! (git remote 2>/dev/null 1>/dev/null); then
+	echoerr "Not a git repository";
+	exit 1;
+fi
 if ! (git remote | grep -q '^upstream$'); then
 	echoerr "No upstream remote configured. Please add it using git:";
 	echoerr "  use (git remote add upstream <url>)";
