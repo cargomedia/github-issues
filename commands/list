@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [ "$1" ]; then
+	if [ "$1" == "me" ]; then
+		ghi list --mine
+	else
+		ghi list --assignee $1
+	fi
+else
+	ghi list
+fi
