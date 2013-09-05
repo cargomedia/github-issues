@@ -57,4 +57,4 @@ if ! (git remote | grep -q '^upstream$'); then
 	exit 1;
 fi
 shift
-$DIR_ROOT"commands/${COMMAND} "$@
+$DIR_ROOT"commands/"$COMMAND $@
