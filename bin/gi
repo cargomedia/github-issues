@@ -17,13 +17,6 @@ case "${COMMAND}" in
 	'li' ) COMMAND='list' ;;
 	'det' ) COMMAND='details' ;;
 	'pr' ) COMMAND='pull-request' ;;
-	'open' )
-		echo "Really create a new issue or checkout an existing one [y/E]?"
-		read answer
-		if ! [[ "${answer}" =~ ^[yY]$ ]]; then
-			COMMAND='checkout'
-		fi
-	;;
 	'new' ) COMMAND='open' ;;
 esac
 
