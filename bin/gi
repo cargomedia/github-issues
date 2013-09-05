@@ -10,6 +10,21 @@ else
 	script=$(readlink -f "$0")
 fi
 DIR_ROOT=$(dirname $script)/../
+
+case "${COMMAND}" in
+	'co' ) COMMAND='checkout' ;;
+	'li' ) COMMAND='list' ;;
+	'det' ) COMMAND='details' ;;
+	'pr' ) COMMAND='pull-request' ;;
+	'new' ) COMMAND='open' ;;
+	'open' )
+		if [[  $2 =~ ^[0-9]+$ && $# == 2 ]]; then
+        	echo;echo "*** Please consider typing co or checkout instead of open next time";echo
+        	COMMAND='checkout'
+        fi
+     ;;
+esac
+
 if ! (test -e $DIR_ROOT"commands/"$COMMAND); then
 	echoerr "Invalid command '$COMMAND'.";
 	COMMAND="";
