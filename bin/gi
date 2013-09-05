@@ -4,12 +4,22 @@ echoerr() {
 	echo "$@" 1>&2;
 }
 COMMAND=$1
+
 if [ `uname` == 'Darwin' ]; then
 	script=$(greadlink -f "$0")
 else
 	script=$(readlink -f "$0")
 fi
 DIR_ROOT=$(dirname $script)/../
+
+case "${COMMAND}" in
+	'co' ) COMMAND='checkout' ;;
+	'li' ) COMMAND='list' ;;
+	'det' ) COMMAND='details' ;;
+	'pr' ) COMMAND='pull-request' ;;
+	'new' ) COMMAND='open' ;;
+esac
+
 if ! (test -e $DIR_ROOT"commands/"$COMMAND); then
 	echoerr "Invalid command '$COMMAND'.";
 	COMMAND="";
@@ -19,14 +29,14 @@ if [ "" == "$COMMAND" ]; then
 	echoerr "usage: gi <command>";
 	echoerr;
 	echoerr "Commands:";
-	echoerr "  list [<username>|me]      Lists repo's issues (assigned to user if provided)";
-	echoerr "  open [<message>]          Open a new issue"
-	echoerr "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
-	echoerr "  details                   Show current branch-issue's details";
+	echoerr "  list | li [<username>|me]      Lists repo's issues (assigned to user if provided)";
+	echoerr "  open | new [<message>]          Open a new issue"
+	echoerr "  checkout | co <issue-number>   Check out branch for specified issue, create it if needed";
+	echoerr "  details | det                   Show current branch-issue's details";
 	echoerr "  browse                    Open current branch-issue in web browser";
 	echoerr "  comment [<message>]       Add comment to current branch-issue";
 	echoerr "  push                      Push current branch-issue to origin";
-	echoerr "  pull-request [<target>]   Create a pull-request with the current branch-issue";
+	echoerr "  pull-request | pr [<target>]   Create a pull-request with the current branch-issue";
 	exit 1;
 fi
 
@@ -39,4 +49,5 @@ if ! (git remote | grep -q '^upstream$'); then
 	echoerr "  use (git remote add upstream <url>)";
 	exit 1;
 fi
-$DIR_ROOT"commands/"$@
+shift
+$DIR_ROOT"commands/"$COMMAND $@
