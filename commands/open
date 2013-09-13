@@ -1,5 +1,10 @@
 #!/bin/bash -e
 
+if [[ $1 =~ ^[0-9]+$ && $# == 1 ]]; then
+	echo "[ERROR] - Opening a new issue with a numeric name not supported";echo
+	exit 127
+fi
+
 MESSAGE="
 # Please explain the issue. The first line will become the title. Trailing
 # lines starting with '#' (like these) will be ignored, and empty messages will

@@ -5,11 +5,6 @@ echoerr() {
 }
 COMMAND=$1
 
-if [[ "${COMMAND}" == 'open' && $2 =~ ^[0-9]+$ && $# == 2 ]]; then
-	echo "[ERROR] - Opening a new issue with a numeric name not advised";echo
-	exit 128
-fi
-
 if [ `uname` == 'Darwin' ]; then
 	script=$(greadlink -f "$0")
 else
