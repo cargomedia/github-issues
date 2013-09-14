@@ -3,6 +3,17 @@
 echoerr() {
 	echo "$@" 1>&2;
 }
+
+getIssue() {
+	BRANCH=$(git rev-parse --abbrev-ref HEAD);
+	IFS='-' read -ra PARTS <<< "$BRANCH"
+	if [ "${PARTS[0]}" != "issue" ]; then
+	        echoerr "Current branch is not issue related"
+	        exit 1;
+	fi
+	echo ${PARTS[1]};
+}
+
 COMMAND=$1
 
 if [ `uname` == 'Darwin' ]; then
@@ -41,4 +52,4 @@ if ! (git remote | grep -q '^upstream$'); then
 	echoerr "  use (git remote add upstream <url>)";
 	exit 1;
 fi
-$DIR_ROOT"commands/"$@
+. $DIR_ROOT"commands/"$@

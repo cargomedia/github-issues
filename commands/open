@@ -1,7 +1,5 @@
-#!/bin/bash -e
-
 if [[ $1 =~ ^[0-9]+$ && $# == 1 ]]; then
-	echo $'[ERROR] - Opening a new issue with a numeric name not supported\n' 1>&2
+	echoerr 'Opening a new issue with a numeric name not supported'
 	exit 127
 fi
 
