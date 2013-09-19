@@ -1,5 +1,3 @@
-#!/bin/bash -e
-
 if [ "$1" ]; then
 	if [ "$1" == "me" ]; then
 		ghi list --mine
