@@ -1,9 +1,6 @@
-#!/bin/bash -e
-
-ISSUE=$($(dirname $0)/_getIssue)
 if [ "" == "$1" ]; then
-	ghi comment $ISSUE
+	ghi comment $(getIssue) 
 else
 	MESSAGE="$@"
-	ghi comment $ISSUE -m "$MESSAGE"
+	ghi comment $(getIssue) -m "$MESSAGE"
 fi

@@ -1,4 +1,1 @@
-#!/bin/bash -e
-
-ISSUE=$($(dirname $0)/_getIssue)
-git push origin issue-$ISSUE
+git push origin issue-$(getIssue)
