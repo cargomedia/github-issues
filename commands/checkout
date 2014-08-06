@@ -9,6 +9,7 @@ else
 			echo "There is no issue number $1." 1>&2
 			exit 1;
 		fi
-		git checkout --quiet master && git pull --quiet --ff-only upstream master && git checkout -b $BRANCH;
+		git remote update upstream
+		git checkout -b $BRANCH upstream/master
 	fi
 fi
