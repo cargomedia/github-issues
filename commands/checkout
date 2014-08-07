@@ -9,6 +9,6 @@ else
 			echo "There is no issue number $1." 1>&2
 			exit 1;
 		fi
-		git checkout --quiet master && git pull --quiet --ff-only upstream master && git checkout -b $BRANCH;
+		git fetch upstream && git checkout --no-track -b $BRANCH upstream/master && git push --set-upstream origin $BRANCH
 	fi
 fi
