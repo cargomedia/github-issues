@@ -1,5 +1,14 @@
-BASE=$1
-if ! [ "$1" ]; then
+while getopts ":i:t:" opt; do
+  case $opt in
+    t) BASE="$OPTARG"
+    ;;
+    i) ISSUE="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    ;;
+  esac
+done
+if ! [ "$BASE" ]; then
 	BASE=$(git remote -v | grep upstream | grep '(push)' | perl -pe 's#^.*github\.com[/:](.+)\.git.*$#$1#');
 	if [[ "$BASE" =~ \(push\)$ ]]; then
 		echo "Could not extract pull-request BASE from remotes/upstream" 1>&2
@@ -7,4 +16,7 @@ if ! [ "$1" ]; then
 	fi
 	BASE="$BASE:master"
 fi
-hub pull-request -i $(getIssue) -b $BASE
+if ! [ "$ISSUE" ]; then
+  ISSUE=$(getIssue)
+fi
+hub pull-request -i $ISSUE -b $BASE

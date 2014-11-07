@@ -32,14 +32,14 @@ if [ "" == "$COMMAND" ]; then
 	echoerr "usage: gi <command>";
 	echoerr;
 	echoerr "Commands:";
-	echoerr "  list [<username>|me]      Lists repo's issues (assigned to user if provided)";
-	echoerr "  open [<message>]          Open a new issue"
-	echoerr "  checkout <issue-number>   Check out branch for specified issue, create it if needed";
-	echoerr "  details                   Show current branch-issue's details";
-	echoerr "  browse                    Open current branch-issue in web browser";
-	echoerr "  comment [<message>]       Add comment to current branch-issue";
-	echoerr "  push                      Push current branch-issue to origin";
-	echoerr "  pull-request [<target>]   Create a pull-request with the current branch-issue";
+	echoerr "  list [<username>|me]                           Lists repo's issues (assigned to user if provided)";
+	echoerr "  open [<message>]                               Open a new issue"
+	echoerr "  checkout <issue-number>                        Check out branch for specified issue, create it if needed";
+	echoerr "  details                                        Show current branch-issue's details";
+	echoerr "  browse                                         Open current branch-issue in web browser";
+	echoerr "  comment [<message>]                            Add comment to current branch-issue";
+	echoerr "  push                                           Push current branch-issue to origin";
+	echoerr "  pull-request -t [<target>] -i [<issue-number>] Create a pull-request with the current branch-issue";
 	exit 1;
 fi
 
