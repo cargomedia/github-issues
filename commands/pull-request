@@ -1,6 +1,6 @@
-while getopts ":i:b:" opt; do
+while getopts ":i:t:" opt; do
   case $opt in
-    b) BASE="$OPTARG"
+    t) BASE="$OPTARG"
     ;;
     i) ISSUE="$OPTARG"
     ;;
