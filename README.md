@@ -1,3 +1,8 @@
+UNMAINTAINED
+============
+This project is not maintained anymore.
+If you want to take over contact us at tech@cargomedia.ch.
+
 # github-issues
 `gi`is a command line tool to CRUD github issues. It maps every issue to a branch `issue-<issue-number>`.
 
